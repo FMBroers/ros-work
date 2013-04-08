@@ -1,0 +1,8 @@
+<launch>
+  <node pkg="rosbag" type="play" name="rosbag" args="-d 2 /home/ankur/dr_jack/20130405/20130405_navtest_0.bag"/>
+  <node name="extract" pkg="image_view" type="extract_images" respawn="false" output="screen" cwd="ROS_HOME">
+    <remap from="image" to="/camera/rgb/image_rect_color"/>
+  </node>
+</launch>
+
+
