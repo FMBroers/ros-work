@@ -1,0 +1,16 @@
+--- CMakeLists.txt.orig	2013-04-08 14:40:39.798336741 +1000
++++ CMakeLists.txt	2013-04-08 14:43:14.466829031 +1000
+@@ -5,9 +5,11 @@
+ find_package(Boost COMPONENTS system filesystem thread REQUIRED)
+ 
+ find_package(PkgConfig)
+-pkg_check_modules(PC_LIBOPENNI REQUIRED libopenni)
++# pkg_check_modules(PC_LIBOPENNI REQUIRED libopenni)
++FIND_PATH(PC_LIBOPENNI_INCLUDE_DIRS "XnOpenNI.h" "OpenNIConfig.h" HINTS "$ENV{OPEN_NI_INCLUDE}" "/usr/include/ni")
++FIND_LIBRARY(PC_LIBOPENNI_LIBRARIES NAMES OpenNI libOpenNI HINTS "$ENV{OPEN_NI_LIB}" "/usr/lib64")
+ 
+-#message("Hello world ${PC_LIBOPENNI_LIBRARIES} ${PC_LIBOPENNI_INCLUDEDIR}")
++message("Hello world ${PC_LIBOPENNI_LIBRARIES} ${PC_LIBOPENNI_INCLUDE_DIRS}")
+ 
+ generate_dynamic_reconfigure_options(cfg/OpenNI.cfg)
+ 
